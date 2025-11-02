@@ -2061,7 +2061,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Setup glossary accordion
     document.querySelectorAll('.accordion-header').forEach(header => {
-        header.addEventListener('click', ()F => {
+        header.addEventListener('click', () => {
             const content = header.nextElementSibling;
             header.classList.toggle('active');
             content.classList.toggle('active');
@@ -2079,3 +2079,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             */
         });
+    });
+    
+    // Load all quizzes
+    loadFillInTheBlankQuiz();
+    loadTrueFalseQuiz();
+    loadMultipleChoiceQuiz();
+    
+    // Initialize stats
+    updateGameStats();
+});
+</script>
+</body>
+</html>
