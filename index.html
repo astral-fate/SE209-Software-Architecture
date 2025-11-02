@@ -99,6 +99,23 @@
             color: #555;
         }
 
+        /* Unit Button Styling */
+        .unit-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            color: #0056b3 !important;
+            text-decoration: none;
+            border: 2px solid #0056b3;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .unit-btn:hover {
+            color: #003d82 !important;
+            border-color: #003d82;
+            text-decoration: none;
+        }
+
         /* Responsive Styles */
         @media screen and (max-width: 992px) { /* Larger tablets */
             .container {
@@ -241,11 +258,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Software Architecture and Design [cite: 1, 2, 255, 256]</h1>
+        <h1>Software Architecture and Design</h1>
         <p class="course-desc">
-             Instructor: Eng. Shymaa Othman [cite: 3, 257]<br>
-             This course is designed to provide a comprehensive understanding of software architecture principles and commonly used design patterns. [cite: 28]
-             It will equip participants with the knowledge and skills needed to design scalable, maintainable, and efficient software systems. [cite: 29]
+             Instructor: Eng. Shymaa Othman<br>
+             This course is designed to provide a comprehensive understanding of software architecture principles and commonly used design patterns.
+             It will equip participants with the knowledge and skills needed to design scalable, maintainable, and efficient software systems.
         </p>
 
         <h2>Course Syllabus</h2>
@@ -260,60 +277,60 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Unit 1</strong></td>
+                    <td><a href="https://astral-fate.github.io/SE209-Software-Architecture/chapters/lecture1.html" class="unit-btn" target="_blank"><strong>Unit 1</strong></a></td>
                     <td>
-                        - Software Development Life Cycle (SDLC) [cite: 31]<br>
-                        - Software Architecture Fundamentals [cite: 46, 52]<br>
-                        - Software Architecture Quality Attributes [cite: 73]<br>
-                        - Styles vs. Patterns vs. Design Patterns [cite: 115]<br>
-                        - Monolithic vs. Distributed Architectures [cite: 147-150]<br>
-                        - Architecture Partitioning (Technical vs. Domain) [cite: 205-207, 225]
+                        - Software Development Life Cycle (SDLC)<br>
+                        - Software Architecture Fundamentals<br>
+                        - Software Architecture Quality Attributes<br>
+                        - Styles vs. Patterns vs. Design Patterns<br>
+                        - Monolithic vs. Distributed Architectures<br>
+                        - Architecture Partitioning (Technical vs. Domain)
                     </td>
                     <td>
-                        - SDLC Phases (Initiation, Requirements, Analysis, Design, Development, Testing, Deployment, Maintenance) [cite: 34-45]<br>
-                        - Architecture as a blueprint [cite: 47]<br>
-                        - Quality Attributes (Scalability, Reliability, Maintainability, Performance, Security, etc.) [cite: 75-114]<br>
-                        - Monolithic Pros (Simple, low cost, faster development) [cite: 162, 164, 165]<br>
-                        - Monolithic Cons (Challenging maintenance, limited scalability, high MTTR) [cite: 167, 168, 169]<br>
-                        - Distributed Pros (Scalable, reliable, high fault tolerance, flexible, testable) [cite: 173, 182, 184, 185]<br>
-                        - Distributed Cons (Higher cost, fallacies of distributed computing) [cite: 188, 191]<br>
-                        - 8 Fallacies of Distributed Computing [cite: 191-204]<br>
-                        - Aligning partitioning with team structure and expected changes [cite: 243, 251]
+                        - SDLC Phases (Initiation, Requirements, Analysis, Design, Development, Testing, Deployment, Maintenance)<br>
+                        - Architecture as a blueprint<br>
+                        - Quality Attributes (Scalability, Reliability, Maintainability, Performance, Security, etc.)<br>
+                        - Monolithic Pros (Simple, low cost, faster development)<br>
+                        - Monolithic Cons (Challenging maintenance, limited scalability, high MTTR)<br>
+                        - Distributed Pros (Scalable, reliable, high fault tolerance, flexible, testable)<br>
+                        - Distributed Cons (Higher cost, fallacies of distributed computing)<br>
+                        - 8 Fallacies of Distributed Computing<br>
+                        - Aligning partitioning with team structure and expected changes
                     </td>
                     <td>
-                        - SDLC [cite: 31]<br>
-                        - SRS (Software Requirement Specification) [cite: 33]<br>
-                        - Architectural Styles (Monolithic, Distributed) [cite: 147-150]<br>
-                        - Architectural Patterns (MVC, Microkernel, etc.) [cite: 140]<br>
-                        - Design Patterns (Creational, Structural, Behavioral) [cite: 144-146]
+                        - SDLC<br>
+                        - SRS (Software Requirement Specification)<br>
+                        - Architectural Styles (Monolithic, Distributed)<br>
+                        - Architectural Patterns (MVC, Microkernel, etc.)<br>
+                        - Design Patterns (Creational, Structural, Behavioral)
                     </td>
                 </tr>
                  <tr>
-                    <td><strong>Unit 2</strong></td>
+                    <td><a href="https://astral-fate.github.io/SE209-Software-Architecture/chapters/lecture2.html" class="unit-btn" target="_blank"><strong>Unit 2</strong></a></td>
                     <td>
-                        - Layered Architecture (N-Tier) [cite: 258]<br>
-                        - Layer Definitions (Presentation, Business, etc.) [cite: 268]<br>
-                        - Key Concept: Layers of Isolation [cite: 310]<br>
-                        - Open vs. Closed Layers [cite: 316, 329]<br>
-                        - Service Layer [cite: 300]<br>
-                        - Architecture Sinkhole Anti-Pattern [cite: 386]
+                        - Layered Architecture (N-Tier)<br>
+                        - Layer Definitions (Presentation, Business, etc.)<br>
+                        - Key Concept: Layers of Isolation<br>
+                        - Open vs. Closed Layers<br>
+                        - Service Layer<br>
+                        - Architecture Sinkhole Anti-Pattern
                     </td>
                     <td>
-                        - Monolithic and Technically Partitioned [cite: 265-267]<br>
-                        - Presentation Layer: Handles user interaction, UI [cite: 275-277]<br>
-                        - Business Layer: Executes business rules and logic [cite: 282, 284]<br>
-                        - Persistence Layer (DAO): Accesses the database (CRUD operations) [cite: 289, 293]<br>
-                        - Database Layer: Stores data, indexes, and tables [cite: 296, 297]<br>
-                        - Service Layer: Optional layer for common, shared services (logging, auditing) [cite: 301-306]<br>
-                        - Isolation: Changes in one layer generally don't impact others [cite: 311]<br>
-                        - Closed Layer: Request must pass through the layer directly below it [cite: 318, 322]<br>
-                        - Open Layer: Allows requests to bypass it and go to the layer below [cite: 332-333]
+                        - Monolithic and Technically Partitioned<br>
+                        - Presentation Layer: Handles user interaction, UI<br>
+                        - Business Layer: Executes business rules and logic<br>
+                        - Persistence Layer (DAO): Accesses the database (CRUD operations)<br>
+                        - Database Layer: Stores data, indexes, and tables<br>
+                        - Service Layer: Optional layer for common, shared services (logging, auditing)<br>
+                        - Isolation: Changes in one layer generally don't impact others<br>
+                        - Closed Layer: Request must pass through the layer directly below it<br>
+                        - Open Layer: Allows requests to bypass it and go to the layer below
                     </td>
                     <td>
-                        - N-Tier Architecture [cite: 258]<br>
-                        - DAO (Data Access Object) [cite: 289]<br>
-                        - SQL [cite: 270, 293, 375]<br>
-                        - Sinkhole Anti-Pattern [cite: 386]
+                        - N-Tier Architecture<br>
+                        - DAO (Data Access Object)<br>
+                        - SQL<br>
+                        - Sinkhole Anti-Pattern
                     </td>
                  </tr>
                  </tbody>
@@ -321,15 +338,15 @@
 
         <h2>Course Objectives</h2>
         <ul>
-            <li>Provide a comprehensive understanding of software architecture principles [cite: 28]</li>
-            <li>Learn commonly used design patterns [cite: 28]</li>
-            <li>Gain the skills to design scalable, maintainable, and efficient software systems [cite: 29]</li>
-            <li>Understand the Software Development Life Cycle (SDLC) and where architecture fits [cite: 33]</li>
-            <li>Define and identify Software Architecture Quality Attributes (e.g., scalability, reliability, maintainability) [cite: 73-114]</li>
-            <li>Differentiate between architectural styles, patterns, and design patterns [cite: 115]</li>
-            <li>Analyze the pros and cons of Monolithic and Distributed architectures [cite: 147-204]</li>
-            <li>Understand technical partitioning vs. domain partitioning [cite: 205-231]</li>
-            <li>Gain in-depth knowledge of Layered (N-Tier) architecture [cite: 258]</li>
+            <li>Provide a comprehensive understanding of software architecture principles</li>
+            <li>Learn commonly used design patterns</li>
+            <li>Gain the skills to design scalable, maintainable, and efficient software systems</li>
+            <li>Understand the Software Development Life Cycle (SDLC) and where architecture fits</li>
+            <li>Define and identify Software Architecture Quality Attributes (e.g., scalability, reliability, maintainability)</li>
+            <li>Differentiate between architectural styles, patterns, and design patterns</li>
+            <li>Analyze the pros and cons of Monolithic and Distributed architectures</li>
+            <li>Understand technical partitioning vs. domain partitioning</li>
+            <li>Gain in-depth knowledge of Layered (N-Tier) architecture</li>
         </ul>
 
          </div>
