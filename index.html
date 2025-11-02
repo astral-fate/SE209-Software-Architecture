@@ -1,1 +1,337 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Architecture and Design</title>
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 25px 40px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3; /* Cairo Uni Blue */
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        h2 {
+            color: #007bff; /* Lighter Blue */
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e9ecef;
+            font-weight: bold;
+            color: #495057;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+        tbody tr:hover {
+            background-color: #e2e6ea;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Adjust column widths for desktop */
+        th:nth-child(1), td:nth-child(1) { width: 8%; }
+        th:nth-child(2), td:nth-child(2) { width: 25%; }
+        th:nth-child(3), td:nth-child(3) { width: 42%; }
+        th:nth-child(4), td:nth-child(4) { width: 25%; }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        li {
+             margin-bottom: 5px;
+        }
+        strong { /* For grading percentages */
+            color: #0056b3; /* Changed from green to match header */
+        }
+        .course-desc {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) { /* Larger tablets */
+            .container {
+                width: 90%;
+            }
+             /* Adjust column widths for tablets */
+            th:nth-child(1), td:nth-child(1) { width: 10%; }
+            th:nth-child(2), td:nth-child(2) { width: 28%; }
+            th:nth-child(3), td:nth-child(3) { width: 37%; }
+            th:nth-child(4), td:nth-child(4) { width: 25%; }
+        }
+
+        @media screen and (max-width: 768px) { /* Tablets and Mobile */
+            .container {
+                width: 95%;
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+            h2 {
+                font-size: 1.3em;
+            }
+
+            table {
+                border: 0;
+            }
+
+            table thead {
+                display: none; /* Hide original table headers */
+            }
+
+            table tr {
+                display: block;
+                margin-bottom: 25px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                background-color: #fff;
+            }
+            tbody tr:nth-child(odd) { /* Reset alternating bg for stacked cards */
+                background-color: #fff;
+            }
+            tbody tr:hover { /* Subtle hover for cards */
+                background-color: #f9f9f9;
+            }
+
+            table td {
+                display: block;
+                padding: 10px 15px 10px 35%; /* Default padding, space for label */
+                position: relative;
+                border-bottom: 1px dashed #eee; /* Separator between "fields" */
+                text-align: left; /* Content aligns left */
+                width: 100% !important; /* Override inline widths from desktop */
+            }
+
+            table td:last-child {
+                border-bottom: none;
+            }
+
+            /* Card Header: First cell (Unit link) */
+            table td:first-child {
+                background-color: #e9ecef;
+                color: #0056b3;
+                font-weight: bold;
+                font-size: 1.1em;
+                padding: 12px 15px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                border-bottom: 1px solid #ddd;
+            }
+            table td:first-child a, table td:first-child strong a { /* Ensure link color */
+                color: #0056b3 !important;
+            }
+            table td:first-child::before { /* No label for the card header */
+                display: none;
+            }
+
+            /* Labels for other cells */
+            table td::before {
+                content: ""; /* Placeholder, set below */
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: calc(35% - 25px); /* Label area width */
+                font-weight: bold;
+                color: #555;
+                text-align: left;
+                white-space: normal; /* Allow labels to wrap */
+                font-size: 0.9em;
+            }
+
+            table td:nth-of-type(2)::before { content: "Topics:"; }
+            table td:nth-of-type(3)::before { content: "Concepts:"; }
+            table td:nth-of-type(4)::before { content: "Methods/Tools:"; }
+
+            table td ul {
+                padding-left: 15px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+             table td ul li {
+                margin-bottom: 3px;
+            }
+
+            .container > ul { /* General lists outside table */
+                padding-left: 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) { /* Smaller Mobile */
+            h1 {
+                font-size: 1.4em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            .container {
+                padding: 15px 10px;
+            }
+            table td { /* Adjust padding for labels on very small screens */
+                padding: 8px 10px 8px 40%;
+            }
+            table td::before { /* Adjust label width */
+                width: calc(40% - 20px);
+                font-size: 0.85em;
+            }
+            table td:first-child { /* Card header padding */
+                padding: 10px 10px;
+                font-size: 1em;
+            }
+             .course-desc {
+                font-size: 1em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Software Architecture and Design [cite: 1, 2, 255, 256]</h1>
+        <p class="course-desc">
+             Instructor: Eng. Shymaa Othman [cite: 3, 257]<br>
+             This course is designed to provide a comprehensive understanding of software architecture principles and commonly used design patterns. [cite: 28]
+             It will equip participants with the knowledge and skills needed to design scalable, maintainable, and efficient software systems. [cite: 29]
+        </p>
+
+        <h2>Course Syllabus</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Unit</th>
+                    <th>Main Topics</th>
+                    <th>Key Concepts</th>
+                    <th>Methodologies / Tools</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Unit 1</strong></td>
+                    <td>
+                        - Software Development Life Cycle (SDLC) [cite: 31]<br>
+                        - Software Architecture Fundamentals [cite: 46, 52]<br>
+                        - Software Architecture Quality Attributes [cite: 73]<br>
+                        - Styles vs. Patterns vs. Design Patterns [cite: 115]<br>
+                        - Monolithic vs. Distributed Architectures [cite: 147-150]<br>
+                        - Architecture Partitioning (Technical vs. Domain) [cite: 205-207, 225]
+                    </td>
+                    <td>
+                        - SDLC Phases (Initiation, Requirements, Analysis, Design, Development, Testing, Deployment, Maintenance) [cite: 34-45]<br>
+                        - Architecture as a blueprint [cite: 47]<br>
+                        - Quality Attributes (Scalability, Reliability, Maintainability, Performance, Security, etc.) [cite: 75-114]<br>
+                        - Monolithic Pros (Simple, low cost, faster development) [cite: 162, 164, 165]<br>
+                        - Monolithic Cons (Challenging maintenance, limited scalability, high MTTR) [cite: 167, 168, 169]<br>
+                        - Distributed Pros (Scalable, reliable, high fault tolerance, flexible, testable) [cite: 173, 182, 184, 185]<br>
+                        - Distributed Cons (Higher cost, fallacies of distributed computing) [cite: 188, 191]<br>
+                        - 8 Fallacies of Distributed Computing [cite: 191-204]<br>
+                        - Aligning partitioning with team structure and expected changes [cite: 243, 251]
+                    </td>
+                    <td>
+                        - SDLC [cite: 31]<br>
+                        - SRS (Software Requirement Specification) [cite: 33]<br>
+                        - Architectural Styles (Monolithic, Distributed) [cite: 147-150]<br>
+                        - Architectural Patterns (MVC, Microkernel, etc.) [cite: 140]<br>
+                        - Design Patterns (Creational, Structural, Behavioral) [cite: 144-146]
+                    </td>
+                </tr>
+                 <tr>
+                    <td><strong>Unit 2</strong></td>
+                    <td>
+                        - Layered Architecture (N-Tier) [cite: 258]<br>
+                        - Layer Definitions (Presentation, Business, etc.) [cite: 268]<br>
+                        - Key Concept: Layers of Isolation [cite: 310]<br>
+                        - Open vs. Closed Layers [cite: 316, 329]<br>
+                        - Service Layer [cite: 300]<br>
+                        - Architecture Sinkhole Anti-Pattern [cite: 386]
+                    </td>
+                    <td>
+                        - Monolithic and Technically Partitioned [cite: 265-267]<br>
+                        - Presentation Layer: Handles user interaction, UI [cite: 275-277]<br>
+                        - Business Layer: Executes business rules and logic [cite: 282, 284]<br>
+                        - Persistence Layer (DAO): Accesses the database (CRUD operations) [cite: 289, 293]<br>
+                        - Database Layer: Stores data, indexes, and tables [cite: 296, 297]<br>
+                        - Service Layer: Optional layer for common, shared services (logging, auditing) [cite: 301-306]<br>
+                        - Isolation: Changes in one layer generally don't impact others [cite: 311]<br>
+                        - Closed Layer: Request must pass through the layer directly below it [cite: 318, 322]<br>
+                        - Open Layer: Allows requests to bypass it and go to the layer below [cite: 332-333]
+                    </td>
+                    <td>
+                        - N-Tier Architecture [cite: 258]<br>
+                        - DAO (Data Access Object) [cite: 289]<br>
+                        - SQL [cite: 270, 293, 375]<br>
+                        - Sinkhole Anti-Pattern [cite: 386]
+                    </td>
+                 </tr>
+                 </tbody>
+        </table>
+
+        <h2>Course Objectives</h2>
+        <ul>
+            <li>Provide a comprehensive understanding of software architecture principles [cite: 28]</li>
+            <li>Learn commonly used design patterns [cite: 28]</li>
+            <li>Gain the skills to design scalable, maintainable, and efficient software systems [cite: 29]</li>
+            <li>Understand the Software Development Life Cycle (SDLC) and where architecture fits [cite: 33]</li>
+            <li>Define and identify Software Architecture Quality Attributes (e.g., scalability, reliability, maintainability) [cite: 73-114]</li>
+            <li>Differentiate between architectural styles, patterns, and design patterns [cite: 115]</li>
+            <li>Analyze the pros and cons of Monolithic and Distributed architectures [cite: 147-204]</li>
+            <li>Understand technical partitioning vs. domain partitioning [cite: 205-231]</li>
+            <li>Gain in-depth knowledge of Layered (N-Tier) architecture [cite: 258]</li>
+        </ul>
+
+         </div>
+</body>
+</html>
